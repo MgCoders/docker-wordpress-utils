@@ -1,4 +1,4 @@
-volumes/nginx/certs/
-volumes/nginx/conf.d/
-volumes/nginx/html/
-volumes/nginx/vhost.d/
+nginx/volumes/nginx/certs/
+nginx/volumes/nginx/conf.d/
+nginx/volumes/nginx/html/
+nginx/volumes/nginx/vhost.d/
