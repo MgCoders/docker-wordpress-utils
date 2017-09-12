@@ -6,3 +6,6 @@ Es necesario crear una red compartida:
 
 sudo docker network create nginx-proxy
 
+Para crear los secretos:
+
+echo "secreto" | docker secret create nombre-del-secreto -

@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2'
 
 services:
 
@@ -7,16 +7,22 @@ services:
     ports:
       - 8282:80
     environment:
-      WORDPRESS_DB_PASSWORD:
-      WORDPRESS_DB_HOST:
-      WORDPRESS_DB_USER:
-      WORDPRESS_DB_NAME:
-      VIRTUAL_HOST:
-
-   volumes:
+      WORDPRESS_DB_PASSWORD: password
+      VIRTUAL_HOST: localhost.xip.io
+      LETSENCRYPT_HOST: 10.1.6.113.xip.io
+      LETSENCRYPT_EMAIL: rsperoni@mgcoders.com
+    links:
+      - mysql
+    volumes:
       - ./themes:/var/www/html/wp-content/themes
       - ./plugins:/var/www/html/wp-content/plugins
       - ./uploads:/var/www/html/wp-content/uploads
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
 
 networks:
   default:
