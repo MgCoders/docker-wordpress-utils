@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  web:
+    image: wordpress
+    ports:
+      - 8284:80
+    environment:
+      WORDPRESS_DB_PASSWORD:{{DOCKER-SECRET:secret-db-pass}}
+      WORDPRESS_DB_HOST:{{DOCKER-SECRET:secret-db-pass}}
+      WORDPRESS_DB_USER:{{DOCKER-SECRET:secret-db-pass}}
+      WORDPRESS_DB_NAME:silicon
+      VIRTUAL_HOST:silicon.localhost.xip.io
+    volumes:
+      - ./themes/silicon:/var/www/html/wp-content/themes/silicon
+      - ./plugins:/var/www/html/wp-content/plugins
+      - ./uploads:/var/www/html/wp-content/uploads
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
