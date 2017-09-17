@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      VIRTUAL_HOST: portainer.mgcoders.com
+      LETSENCRYPT_HOST: portainer.mgcoders.com
+      LETSENCRYPT_EMAIL: info@mgcoders.com
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
